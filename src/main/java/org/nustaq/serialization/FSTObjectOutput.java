@@ -273,6 +273,7 @@ public class FSTObjectOutput implements ObjectOutput {
         curDepth++;
         if ( isCrossPlatform ) {
             writeObjectInternal(obj, null); // not supported cross platform
+            curDepth--;
             return;
         }
         if ( possibles != null && possibles.length > 1 ) {
@@ -282,6 +283,7 @@ public class FSTObjectOutput implements ObjectOutput {
             }
         }
         writeObjectInternal(obj, null, possibles);
+        curDepth--;
     }
 
     protected FSTClazzInfo.FSTFieldInfo refs[] = new FSTClazzInfo.FSTFieldInfo[20];
